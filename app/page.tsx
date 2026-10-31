@@ -1,5 +1,16 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calculator, Headphones, Layers, Mic, PenLine, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Calculator,
+  CheckCircle2,
+  Headphones,
+  Layers,
+  Mic,
+  PenLine,
+  Sparkles,
+} from "lucide-react";
+import { HeroQuiz } from "@/components/HeroQuiz";
 import { lessons } from "@/content/lessons";
 import { practiceTests } from "@/content/practice";
 import { vocabulary } from "@/content/vocabulary";
@@ -14,164 +25,201 @@ const featured = [
   "ielts-study-plan",
 ];
 
+const topics = [
+  "Education", "Environment", "Technology", "Health", "Work", "Cities", "Crime", "Tourism",
+  "Media", "Science", "Family", "Culture", "Transport", "Food", "Sport", "Globalisation",
+];
+
+const sectionIcon = {
+  general: <Sparkles size={18} aria-hidden />,
+  listening: <Headphones size={18} aria-hidden />,
+  reading: <BookOpen size={18} aria-hidden />,
+  writing: <PenLine size={18} aria-hidden />,
+  speaking: <Mic size={18} aria-hidden />,
+  vocabulary: <Layers size={18} aria-hidden />,
+};
+
 export default function Home() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: site.name,
-    url: site.url,
-    description: site.description,
-  };
+  const jsonLd = { "@context": "https://schema.org", "@type": "WebSite", name: site.name, url: site.url, description: site.description };
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <section className="hero">
+
+      <section className="hero mesh">
+        <div className="mesh-blob b1" aria-hidden />
+        <div className="mesh-blob b2" aria-hidden />
+        <div className="mesh-blob b3" aria-hidden />
+        <div className="grid-overlay" aria-hidden />
         <div className="container hero-grid">
-          <div>
-            <span className="eyebrow">Free IELTS preparation</span>
+          <div className="hero-copy">
+            <span className="pill-badge">
+              <span className="dot" aria-hidden /> 100% free · no sign-up
+            </span>
             <h1>
-              Reach your target band, <em>without paying for a course.</em>
+              Reach your target band <span className="gradient-text">without paying for a course.</span>
             </h1>
             <p className="lead">
               Clear lessons for every section, original practice tests with instant scores, and AI feedback on your writing
-              and speaking. Built for learners everywhere: no sign-up, no paywall.
+              and speaking, for learners everywhere.
             </p>
-            <div className="btn-row" style={{ marginTop: 26 }}>
-              <Link href="/practice/" className="btn primary">
+            <div className="btn-row" style={{ marginTop: 28 }}>
+              <Link href="/practice/" className="btn primary shine">
                 Take a free practice test <ArrowRight size={18} aria-hidden />
               </Link>
-              <Link href="/lessons/" className="btn ghost">
-                Browse lessons
+              <Link href="/ai-feedback/" className="btn ghost">
+                <Sparkles size={18} aria-hidden /> Get AI feedback
               </Link>
             </div>
-            <div className="hero-stats">
-              <div>
-                <b>{lessons.length}</b>
-                <span>in-depth lessons</span>
-              </div>
-              <div>
-                <b>{practiceTests.length}</b>
-                <span>practice tests</span>
-              </div>
-              <div>
-                <b>{vocabulary.length}</b>
-                <span>key words</span>
-              </div>
-              <div>
-                <b>100%</b>
-                <span>free</span>
-              </div>
-            </div>
-          </div>
-          <div className="card band-card" aria-label="Example of a band score report">
-            <span className="eyebrow">Example score report</span>
-            <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
-              <span className="big-band">7.5</span>
-              <span className="muted">Overall band · Good user</span>
-            </div>
-            <ul className="skill-bars">
-              {[
-                ["Listening", 8],
-                ["Reading", 7.5],
-                ["Writing", 6.5],
-                ["Speaking", 7.5],
-              ].map(([k, v]) => (
-                <li key={k}>
-                  <span>{k}</span>
-                  <span className="bar">
-                    <span style={{ width: `${((v as number) / 9) * 100}%` }} />
-                  </span>
-                  <span>{(v as number).toFixed(1)}</span>
+            <ul className="hero-checks">
+              {["Academic & General Training", "Instant band estimates", "Works on any phone"].map((t) => (
+                <li key={t}>
+                  <CheckCircle2 size={16} aria-hidden /> {t}
                 </li>
               ))}
             </ul>
-            <p className="small muted" style={{ marginTop: 18, marginBottom: 0 }}>
-              Writing is usually the lowest band. Our <Link href="/ai-feedback/">AI feedback</Link> shows you exactly why.
-            </p>
+          </div>
+          <HeroQuiz />
+        </div>
+        <div className="container">
+          <dl className="stats-strip reveal">
+            <div><dt>Lessons</dt><dd>{lessons.length}</dd></div>
+            <div><dt>Practice tests</dt><dd>{practiceTests.length}</dd></div>
+            <div><dt>Key words</dt><dd>{vocabulary.length}</dd></div>
+            <div><dt>Price</dt><dd>$0</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <div className="marquee" aria-label="Common IELTS topics">
+        <div className="marquee-track">
+          {[...topics, ...topics].map((t, i) => (
+            <span key={i} aria-hidden={i >= topics.length}>{t}</span>
+          ))}
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <div className="section-head reveal">
+            <span className="eyebrow">Everything you need</span>
+            <h2>One place to prepare for every section</h2>
+          </div>
+          <div className="bento">
+            <Link href="/practice/" className="bento-card b-wide glow-card reveal">
+              <span className="icon-chip good"><Headphones size={22} aria-hidden /></span>
+              <h3>Practice tests that feel real</h3>
+              <p>Timed Listening and Reading tests with original questions, explanations for every answer and an instant band.</p>
+              <div className="mini-score" aria-hidden>
+                <span className="mini-ring"><b>7.0</b></span>
+                <ul>
+                  <li><span className="ok">✓</span> True / False / Not Given</li>
+                  <li><span className="ok">✓</span> Matching headings</li>
+                  <li><span className="ko">✗</span> Sentence completion</li>
+                </ul>
+              </div>
+            </Link>
+            <Link href="/ai-feedback/" className="bento-card b-tall glow-card accent reveal">
+              <span className="icon-chip accent"><Sparkles size={22} aria-hidden /></span>
+              <h3>AI feedback in seconds</h3>
+              <p>Paste an essay or record a Part 2 answer. Get a band for each criterion and line-by-line corrections.</p>
+              <div className="mini-correction" aria-hidden>
+                <s>an advice</s> → <b>a piece of advice</b>
+                <small>“advice” is uncountable</small>
+              </div>
+              <div className="mini-bars" aria-hidden>
+                {[["Task Response", 78], ["Coherence", 72], ["Vocabulary", 67], ["Grammar", 61]].map(([k, v]) => (
+                  <div key={k as string}>
+                    <span>{k}</span>
+                    <i style={{ width: `${v}%` }} />
+                  </div>
+                ))}
+              </div>
+            </Link>
+            <Link href="/lessons/" className="bento-card glow-card reveal">
+              <span className="icon-chip"><BookOpen size={22} aria-hidden /></span>
+              <h3>{lessons.length} in-depth lessons</h3>
+              <p>Strategies and band 8 model answers.</p>
+            </Link>
+            <Link href="/tools/band-score-calculator/" className="bento-card glow-card reveal">
+              <span className="icon-chip warn"><Calculator size={22} aria-hidden /></span>
+              <h3>Band calculator</h3>
+              <p>Raw scores to bands, with official rounding.</p>
+            </Link>
+            <Link href="/tools/vocabulary/" className="bento-card b-full glow-card reveal">
+              <span className="icon-chip good"><Layers size={22} aria-hidden /></span>
+              <h3>Flashcards that remember what you forget</h3>
+              <p>{vocabulary.length} essential words and collocations with spaced repetition. Difficult words come back more often.</p>
+              <div className="mini-cards" aria-hidden>
+                <span>mitigate</span>
+                <span>sedentary</span>
+                <span>exacerbate</span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
       <section className="section tint">
         <div className="container">
-          <span className="eyebrow">Everything you need</span>
-          <h2>Four ways to prepare</h2>
-          <div className="card-grid" style={{ marginTop: 24 }}>
-            {[
-              { href: "/lessons/", icon: <BookOpen size={22} aria-hidden />, tone: "", title: "Lessons", text: "Strategies for every question type, with original model answers and examiner insights." },
-              { href: "/practice/", icon: <Headphones size={22} aria-hidden />, tone: "good", title: "Practice tests", text: "Timed Listening and Reading tests with explanations and an instant band estimate." },
-              { href: "/tools/", icon: <Calculator size={22} aria-hidden />, tone: "warn", title: "Free tools", text: "Band calculator, writing timer with word counter, and spaced-repetition flashcards." },
-              { href: "/ai-feedback/", icon: <Sparkles size={22} aria-hidden />, tone: "accent", title: "AI feedback", text: "Estimated bands and corrections for your essays and spoken answers in seconds." },
-            ].map((c) => (
-              <Link key={c.href} href={c.href} className="card link-card">
-                <span className={"icon-chip " + c.tone}>{c.icon}</span>
-                <h3>{c.title}</h3>
-                <p>{c.text}</p>
-                <span className="more">Explore →</span>
-              </Link>
-            ))}
+          <div className="section-head reveal">
+            <span className="eyebrow">Start here</span>
+            <h2>Most popular lessons</h2>
           </div>
+          <div className="card-grid">
+            {featured
+              .map((slug) => lessons.find((l) => l.slug === slug)!)
+              .map((l) => (
+                <Link key={l.slug} href={`/lessons/${l.slug}/`} className="card link-card glow-card reveal">
+                  <span className={"tag " + l.section}>
+                    {sectionIcon[l.section]} {l.minutes} min read
+                  </span>
+                  <h3>{l.title}</h3>
+                  <p>{l.description}</p>
+                  <span className="more">Read lesson →</span>
+                </Link>
+              ))}
+          </div>
+          <p style={{ textAlign: "center", marginTop: 28 }}>
+            <Link href="/lessons/" className="btn ghost">
+              See all {lessons.length} lessons <ArrowRight size={18} aria-hidden />
+            </Link>
+          </p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-          <span className="eyebrow">Start here</span>
-          <h2>Most popular lessons</h2>
-          <div className="card-grid" style={{ marginTop: 24 }}>
-            {featured
-              .map((slug) => lessons.find((l) => l.slug === slug)!)
-              .map((l) => (
-                <Link key={l.slug} href={`/lessons/${l.slug}/`} className="card link-card">
-                  <span className={"tag " + l.section}>{l.minutes} min read</span>
-                  <h3>{l.title}</h3>
-                  <p>{l.description}</p>
-                </Link>
-              ))}
+          <div className="section-head reveal">
+            <span className="eyebrow">How it works</span>
+            <h2>A simple routine, four steps</h2>
           </div>
+          <ol className="steps">
+            {[
+              { t: "Find your level", d: "Take a practice test and convert your score with the band calculator.", href: "/practice/" },
+              { t: "Learn the technique", d: "Read the lessons for your weakest section and study the model answers.", href: "/lessons/" },
+              { t: "Practise with feedback", d: "Write timed essays and record Part 2 answers, then check them with AI.", href: "/ai-feedback/" },
+              { t: "Build vocabulary daily", d: "Ten minutes of flashcards a day adds up to hundreds of words.", href: "/tools/vocabulary/" },
+            ].map((s, i) => (
+              <li key={s.t} className="reveal">
+                <span className="step-num">{i + 1}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+                <Link href={s.href}>Go →</Link>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="section tint">
-        <div className="container hero-grid" style={{ alignItems: "start" }}>
+      <section className="container">
+        <div className="cta-band reveal">
           <div>
-            <span className="eyebrow">How it works</span>
-            <h2>A simple routine that works</h2>
-            <ol className="prose" style={{ paddingLeft: "1.2em" }}>
-              <li>
-                <strong>Find your level.</strong> Take a <Link href="/practice/">practice test</Link> and convert your score
-                with the <Link href="/tools/band-score-calculator/">band calculator</Link>.
-              </li>
-              <li>
-                <strong>Learn the technique.</strong> Read the lessons for your weakest section.
-              </li>
-              <li>
-                <strong>Practise and get feedback.</strong> Write timed essays, record Part 2 answers, and check them with{" "}
-                <Link href="/ai-feedback/">AI feedback</Link>.
-              </li>
-              <li>
-                <strong>Build vocabulary daily.</strong> Ten minutes of <Link href="/tools/vocabulary/">flashcards</Link> a
-                day adds up fast.
-              </li>
-            </ol>
+            <h2>Ready to find your band?</h2>
+            <p>Start with a 20-minute Reading test. No account, no payment: just your browser.</p>
           </div>
-          <div className="card">
-            <h3>
-              <PenLine size={18} aria-hidden style={{ verticalAlign: -3 }} /> Try it now
-            </h3>
-            <p className="muted">Write a Task 2 essay against the clock, then get an estimated band.</p>
-            <div className="btn-row">
-              <Link href="/tools/writing-practice/" className="btn primary sm">
-                Writing practice
-              </Link>
-              <Link href="/ai-feedback/?tab=speaking" className="btn ghost sm">
-                <Mic size={16} aria-hidden /> Speaking practice
-              </Link>
-              <Link href="/tools/vocabulary/" className="btn ghost sm">
-                <Layers size={16} aria-hidden /> Flashcards
-              </Link>
-            </div>
-          </div>
+          <Link href="/practice/" className="btn light shine">
+            Start now <ArrowRight size={18} aria-hidden />
+          </Link>
         </div>
       </section>
     </>

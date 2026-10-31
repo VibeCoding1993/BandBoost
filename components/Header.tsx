@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { site } from "@/lib/site";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/lessons/", label: "Lessons" },
@@ -44,6 +45,7 @@ export function Header() {
             </Link>
           ))}
         </nav>
+        <ThemeToggle />
       </div>
     </header>
   );

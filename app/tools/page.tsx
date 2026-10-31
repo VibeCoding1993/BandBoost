@@ -25,7 +25,7 @@ export default function ToolsPage() {
       </header>
       <div className="card-grid">
         {tools.map((t) => (
-          <Link key={t.href} href={t.href} className="card link-card">
+          <Link key={t.href} href={t.href} className="card link-card glow-card reveal">
             <span className={"icon-chip " + t.tone}>{t.icon}</span>
             <h3>{t.title}</h3>
             <p>{t.text}</p>

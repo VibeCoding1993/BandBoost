@@ -46,6 +46,7 @@ export default async function LessonPage({ params }: Params) {
   return (
     <div className="container">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <div className="read-progress" aria-hidden />
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <Link href="/">Home</Link> › <Link href="/lessons/">Lessons</Link> ›{" "}
         <Link href={`/lessons/#${lesson.section}`}>{sectionInfo[lesson.section].label}</Link>
@@ -78,7 +79,7 @@ export default async function LessonPage({ params }: Params) {
           <AdSlot slot={process.env.NEXT_PUBLIC_AD_SLOT_ARTICLE_BOTTOM} />
           <nav className="next-prev" aria-label="More lessons">
             {prev ? (
-              <Link href={`/lessons/${prev.slug}/`} className="card link-card">
+              <Link href={`/lessons/${prev.slug}/`} className="card link-card glow-card reveal">
                 <span className="muted small">← Previous</span>
                 <strong>{prev.title}</strong>
               </Link>
@@ -86,7 +87,7 @@ export default async function LessonPage({ params }: Params) {
               <span />
             )}
             {next && (
-              <Link href={`/lessons/${next.slug}/`} className="card link-card">
+              <Link href={`/lessons/${next.slug}/`} className="card link-card glow-card reveal">
                 <span className="muted small">Next →</span>
                 <strong>{next.title}</strong>
               </Link>

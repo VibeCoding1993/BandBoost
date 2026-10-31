@@ -43,7 +43,7 @@ export default function LessonsPage() {
           <p className="muted">{sectionInfo[s].blurb}</p>
           <div className="card-grid">
             {lessonsBySection(s).map((l) => (
-              <Link key={l.slug} href={`/lessons/${l.slug}/`} className="card link-card">
+              <Link key={l.slug} href={`/lessons/${l.slug}/`} className="card link-card glow-card reveal">
                 <span className={"tag " + l.section}>
                   {l.level} · {l.minutes} min
                 </span>

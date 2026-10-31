@@ -39,7 +39,7 @@ export default function PracticePage() {
             {practiceTests
               .filter((t) => t.skill === g.skill)
               .map((t) => (
-                <Link key={t.slug} href={`/practice/${t.slug}/`} className="card link-card">
+                <Link key={t.slug} href={`/practice/${t.slug}/`} className="card link-card glow-card reveal">
                   <span className={"tag " + t.skill}>
                     {questionCount(t)} questions · {t.minutes} min · {t.level}
                   </span>
