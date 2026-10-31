@@ -6,6 +6,7 @@ import { Markdown } from "@/components/Markdown";
 import { TestRunner } from "@/components/TestRunner";
 import { practiceTests, testBySlug } from "@/content/practice";
 import { questionCount } from "@/content/practice-types";
+import { breadcrumbLd, ldJson } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -17,7 +18,12 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const t = testBySlug((await params).slug);
   if (!t) return {};
-  return { title: t.title, description: t.description, alternates: { canonical: `/practice/${t.slug}/` } };
+  return {
+    title: t.title,
+    description: t.description,
+    alternates: { canonical: `/practice/${t.slug}/` },
+    openGraph: { title: t.title, description: t.description, url: `/practice/${t.slug}/`, images: [{ url: `/og/${t.slug}.png`, width: 1200, height: 630 }] },
+  };
 }
 
 export default async function PracticeTestPage({ params }: Params) {
@@ -25,6 +31,16 @@ export default async function PracticeTestPage({ params }: Params) {
   if (!test) notFound();
   return (
     <div className="container">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={ldJson(
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Practice tests", path: "/practice/" },
+            { name: test.title, path: `/practice/${test.slug}/` },
+          ]),
+        )}
+      />
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <Link href="/">Home</Link> › <Link href="/practice/">Practice tests</Link>
       </nav>

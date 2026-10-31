@@ -7,6 +7,7 @@ import { Markdown, headings } from "@/components/Markdown";
 import { lessonBySlug, lessons, lessonsBySection, neighbours } from "@/content/lessons";
 import { sectionInfo } from "@/content/types";
 import { site } from "@/lib/site";
+import { breadcrumbLd, ldJson } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
     title: lesson.title,
     description: lesson.description,
     alternates: { canonical: url },
-    openGraph: { type: "article", title: lesson.title, description: lesson.description, url, modifiedTime: lesson.updated },
+    openGraph: { type: "article", title: lesson.title, description: lesson.description, url, modifiedTime: lesson.updated, images: [{ url: `/og/${lesson.slug}.png`, width: 1200, height: 630 }] },
+    twitter: { card: "summary_large_image", title: lesson.title, description: lesson.description, images: [`/og/${lesson.slug}.png`] },
   };
 }
 
@@ -38,14 +40,28 @@ export default async function LessonPage({ params }: Params) {
     "@type": "Article",
     headline: lesson.title,
     description: lesson.description,
+    datePublished: lesson.updated,
     dateModified: lesson.updated,
-    author: { "@type": "Organization", name: site.name },
+    image: `${site.url}/og/${lesson.slug}.png`,
+    inLanguage: "en",
+    author: { "@type": "Organization", name: site.name, url: site.url },
     publisher: { "@type": "Organization", name: site.name },
     mainEntityOfPage: `${site.url}/lessons/${lesson.slug}/`,
   };
   return (
     <div className="container">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(jsonLd)} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={ldJson(
+          breadcrumbLd([
+            { name: "Home", path: "/" },
+            { name: "Lessons", path: "/lessons/" },
+            { name: sectionInfo[lesson.section].label, path: `/lessons/#${lesson.section}` },
+            { name: lesson.title, path: `/lessons/${lesson.slug}/` },
+          ]),
+        )}
+      />
       <div className="read-progress" aria-hidden />
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <Link href="/">Home</Link> › <Link href="/lessons/">Lessons</Link> ›{" "}
