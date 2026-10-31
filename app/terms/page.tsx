@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
-import { disclaimer, site } from "@/lib/site";
+import { aiOn, disclaimer, site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Terms of Use", description: `Terms of use for ${site.name}.`, alternates: { canonical: "/terms/" } };
 
@@ -16,7 +16,7 @@ By using ${site.name} you agree to these terms.
 
 ## Educational use
 
-All content is provided free of charge for personal study. Practice-test scores, band calculations and AI feedback are **estimates** to support your learning. They are not official IELTS results, and we make no guarantee about the score you will obtain in an official test.
+All content is provided free of charge for personal study. Practice-test scores, band calculations${aiOn ? ", AI feedback" : ""} and automatic checks are **estimates** to support your learning. They are not official IELTS results, and we make no guarantee about the score you will obtain in an official test.
 
 ## Our content
 
@@ -28,7 +28,7 @@ Do not attempt to disrupt the site or its services, submit harmful content to th
 
 ## Third-party services
 
-The site uses third-party services, including Google AdSense for advertising and Google Gemini for AI feedback. Their own terms apply to their services. External links are provided for convenience; we are not responsible for the content of other websites.
+The site uses third-party services, including Google AdSense for advertising${aiOn ? " and Google Gemini for AI feedback" : ""}. Their own terms apply to their services. External links are provided for convenience; we are not responsible for the content of other websites.
 
 ## Trademark notice
 

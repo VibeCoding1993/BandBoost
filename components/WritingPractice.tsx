@@ -5,6 +5,7 @@ import { Pause, Play, RotateCcw, Shuffle, Sparkles } from "lucide-react";
 import { countWords } from "@/lib/bands";
 import { DRAFT_KEY, load, save, type Draft } from "@/lib/storage";
 import { writingPrompts } from "@/content/prompts";
+import { aiOn } from "@/lib/site";
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
@@ -106,9 +107,9 @@ export function WritingPractice() {
             router.push("/ai-feedback/?from=writing");
           }}
         >
-          <Sparkles size={18} aria-hidden /> Get AI feedback on this answer
+          <Sparkles size={18} aria-hidden /> {aiOn ? "Get AI feedback on this answer" : "Check this answer"}
         </button>
-        <p className="small muted">Write at least 50 words to request feedback.</p>
+        <p className="small muted">Write at least 50 words to check your answer.</p>
       </div>
     </div>
   );

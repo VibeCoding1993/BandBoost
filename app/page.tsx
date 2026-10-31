@@ -14,7 +14,7 @@ import { HeroQuiz } from "@/components/HeroQuiz";
 import { lessons } from "@/content/lessons";
 import { practiceTests } from "@/content/practice";
 import { vocabulary } from "@/content/vocabulary";
-import { site } from "@/lib/site";
+import { aiOn, site } from "@/lib/site";
 
 const featured = [
   "ielts-band-scores-explained",
@@ -59,15 +59,15 @@ export default function Home() {
               Reach your target band <span className="gradient-text">without paying for a course.</span>
             </h1>
             <p className="lead">
-              Clear lessons for every section, original practice tests with instant scores, and AI feedback on your writing
-              and speaking, for learners everywhere.
+              Clear lessons for every section, original practice tests with instant scores, and{" "}
+              {aiOn ? "AI feedback" : "instant checks"} on your writing and speaking, for learners everywhere.
             </p>
             <div className="btn-row" style={{ marginTop: 28 }}>
               <Link href="/practice/" className="btn primary shine">
                 Take a free practice test <ArrowRight size={18} aria-hidden />
               </Link>
               <Link href="/ai-feedback/" className="btn ghost">
-                <Sparkles size={18} aria-hidden /> Get AI feedback
+                <Sparkles size={18} aria-hidden /> {aiOn ? "Get AI feedback" : "Check my essay"}
               </Link>
             </div>
             <ul className="hero-checks">
@@ -120,12 +120,13 @@ export default function Home() {
             </Link>
             <Link href="/ai-feedback/" className="bento-card b-tall glow-card accent reveal">
               <span className="icon-chip accent"><Sparkles size={22} aria-hidden /></span>
-              <h3>AI feedback in seconds</h3>
-              <p>Paste an essay or record a Part 2 answer. Get a band for each criterion and line-by-line corrections.</p>
+              <h3>{aiOn ? "AI feedback in seconds" : "Instant essay checker"}</h3>
+              <p>{aiOn ? "Paste an essay or record a Part 2 answer. Get a band for each criterion and line-by-line corrections." : "Paste an essay or record a Part 2 answer. Get instant checks on length, linking, repetition and common errors."}</p>
               <div className="mini-correction" aria-hidden>
                 <s>an advice</s> → <b>a piece of advice</b>
                 <small>“advice” is uncountable</small>
               </div>
+              {aiOn && (
               <div className="mini-bars" aria-hidden>
                 {[["Task Response", 78], ["Coherence", 72], ["Vocabulary", 67], ["Grammar", 61]].map(([k, v]) => (
                   <div key={k as string}>
@@ -134,6 +135,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              )}
             </Link>
             <Link href="/lessons/" className="bento-card glow-card reveal">
               <span className="icon-chip"><BookOpen size={22} aria-hidden /></span>
@@ -197,7 +199,7 @@ export default function Home() {
             {[
               { t: "Find your level", d: "Take a practice test and convert your score with the band calculator.", href: "/practice/" },
               { t: "Learn the technique", d: "Read the lessons for your weakest section and study the model answers.", href: "/lessons/" },
-              { t: "Practise with feedback", d: "Write timed essays and record Part 2 answers, then check them with AI.", href: "/ai-feedback/" },
+              { t: "Practise with feedback", d: aiOn ? "Write timed essays and record Part 2 answers, then check them with AI." : "Write timed essays and record Part 2 answers, then run the instant checks.", href: "/ai-feedback/" },
               { t: "Build vocabulary daily", d: "Ten minutes of flashcards a day adds up to hundreds of words.", href: "/tools/vocabulary/" },
             ].map((s, i) => (
               <li key={s.t} className="reveal">

@@ -1,8 +1,9 @@
 import { marked } from "marked";
+import { adaptAiWording } from "@/lib/ai-wording";
 
 /** Renders trusted, first-party Markdown (lesson content written for this site) at build time. */
 export function Markdown({ source, className = "prose" }: { source: string; className?: string }) {
-  const html = marked.parse(source, { async: false, gfm: true }) as string;
+  const html = marked.parse(adaptAiWording(source), { async: false, gfm: true }) as string;
   return <div className={className} dangerouslySetInnerHTML={{ __html: addHeadingIds(html) }} />;
 }
 

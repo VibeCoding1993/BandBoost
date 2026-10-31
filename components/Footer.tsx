@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { disclaimer, site } from "@/lib/site";
+import { disclaimer, feedbackLabel, site } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -32,7 +32,7 @@ export function Footer() {
               <li><Link href="/tools/band-score-calculator/">Band score calculator</Link></li>
               <li><Link href="/tools/writing-practice/">Writing timer</Link></li>
               <li><Link href="/tools/vocabulary/">Vocabulary flashcards</Link></li>
-              <li><Link href="/ai-feedback/">AI feedback</Link></li>
+              <li><Link href="/ai-feedback/">{feedbackLabel}</Link></li>
             </ul>
           </div>
           <div>

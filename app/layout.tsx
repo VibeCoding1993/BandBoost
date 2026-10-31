@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -32,6 +31,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${body.variable} ${display.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {site.adsenseClient && (
+          // Plain tag in the server-rendered <head>, where AdSense's verification crawler expects it.
+          <script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}`}
+            crossOrigin="anonymous"
+          />
+        )}
       </head>
       <body>
         <a className="skip-link" href="#content">
@@ -40,15 +47,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="content">{children}</main>
         <Footer />
-        {site.adsenseClient && (
-          <Script
-            id="adsense"
-            async
-            strategy="afterInteractive"
-            crossOrigin="anonymous"
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${site.adsenseClient}`}
-          />
-        )}
       </body>
     </html>
   );

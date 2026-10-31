@@ -6,6 +6,10 @@ import { site } from "@/lib/site";
 import { DRAFT_KEY, load, type Draft } from "@/lib/storage";
 import { cueCards, writingPrompts } from "@/content/prompts";
 import { FeedbackResult, type Feedback } from "./FeedbackResult";
+import { InstantChecks } from "./InstantChecks";
+import { checkEssay, checkSpeech, type EssayReport } from "@/lib/essay-check";
+
+const aiOn = !!site.apiUrl;
 
 type Tab = "writing" | "speaking";
 
@@ -72,6 +76,7 @@ function WritingFeedback() {
   const [promptId, setPromptId] = useState(writingPrompts[0]!.id);
   const [text, setText] = useState("");
   const { busy, error, result, run } = useFeedback();
+  const [report, setReport] = useState<EssayReport | null>(null);
   const prompt = writingPrompts.find((p) => p.id === promptId)!;
   const words = countWords(text);
   const min = prompt.task === "task2" ? 250 : 150;
@@ -91,7 +96,8 @@ function WritingFeedback() {
         style={{ display: "grid", gap: 14 }}
         onSubmit={(e) => {
           e.preventDefault();
-          run({ mode: "writing", task: prompt.task, prompt: prompt.text, text });
+          setReport(checkEssay(text, min, prompt.task === "task1-gt"));
+          if (aiOn) run({ mode: "writing", task: prompt.task, prompt: prompt.text, text });
         }}
       >
         <label>
@@ -114,10 +120,11 @@ function WritingFeedback() {
             {words} words {words < min && `(the task asks for at least ${min})`}
           </span>
           <button type="submit" className="btn accent" disabled={busy || words < 40}>
-            <Sparkles size={18} aria-hidden /> {busy ? "Analysing… (up to 30 s)" : "Get my feedback"}
+            <Sparkles size={18} aria-hidden /> {busy ? "Analysing… (up to 30 s)" : aiOn ? "Get my feedback" : "Check my essay"}
           </button>
         </div>
       </form>
+      {report && <InstantChecks report={report} />}
       {error && <p className="notice bad" style={{ marginTop: 16 }} role="alert">{error}</p>}
       {result && <FeedbackResult f={result} />}
     </>
@@ -145,6 +152,9 @@ function SpeakingFeedback() {
   const [supported, setSupported] = useState(true);
   const [micError, setMicError] = useState("");
   const rec = useRef<Recognition | null>(null);
+  const startedAt = useRef(0);
+  const [spokenSeconds, setSpokenSeconds] = useState(0);
+  const [report, setReport] = useState<EssayReport | null>(null);
   const { busy, error, result, run } = useFeedback();
 
   useEffect(() => {
@@ -170,6 +180,7 @@ function SpeakingFeedback() {
     setMicError("");
     setPhase("recording");
     setSeconds(120);
+    startedAt.current = Date.now();
     if (!supported) return;
     const w = window as unknown as { SpeechRecognition?: new () => Recognition; webkitSpeechRecognition?: new () => Recognition };
     const R = (w.SpeechRecognition || w.webkitSpeechRecognition)!;
@@ -212,6 +223,7 @@ function SpeakingFeedback() {
     const r = rec.current;
     rec.current = null;
     r?.stop();
+    setSpokenSeconds(startedAt.current ? (Date.now() - startedAt.current) / 1000 : 0);
     setInterim("");
     setPhase("done");
   }
@@ -270,7 +282,8 @@ function SpeakingFeedback() {
         style={{ display: "grid", gap: 12, marginTop: 18 }}
         onSubmit={(e) => {
           e.preventDefault();
-          run({ mode: "speaking", prompt: card.topic + " You should say: " + card.points.join("; "), text: finalText });
+          setReport(checkSpeech(finalText, spokenSeconds));
+          if (aiOn) run({ mode: "speaking", prompt: card.topic + " You should say: " + card.points.join("; "), text: finalText });
         }}
       >
         <label>
@@ -286,10 +299,11 @@ function SpeakingFeedback() {
         <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", justifyContent: "space-between" }}>
           <span className="small muted">{words} words (a two-minute answer is usually 200–300 words)</span>
           <button type="submit" className="btn accent" disabled={busy || words < 40 || phase === "recording"}>
-            <Sparkles size={18} aria-hidden /> {busy ? "Analysing…" : "Get my feedback"}
+            <Sparkles size={18} aria-hidden /> {busy ? "Analysing…" : aiOn ? "Get my feedback" : "Check my answer"}
           </button>
         </div>
       </form>
+      {report && <InstantChecks report={report} title="Instant speaking checks" />}
       {error && <p className="notice bad" style={{ marginTop: 16 }} role="alert">{error}</p>}
       {result && <FeedbackResult f={result} />}
     </>

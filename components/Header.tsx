@@ -3,14 +3,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { site } from "@/lib/site";
+import { feedbackLabel, site } from "@/lib/site";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/lessons/", label: "Lessons" },
   { href: "/practice/", label: "Practice tests" },
   { href: "/tools/", label: "Free tools" },
-  { href: "/ai-feedback/", label: "AI feedback" },
+  { href: "/ai-feedback/", label: feedbackLabel },
 ];
 
 export function Header() {

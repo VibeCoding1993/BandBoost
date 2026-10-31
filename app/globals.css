@@ -550,3 +550,10 @@ html { scroll-behavior: smooth; }
 .b-full .icon-chip { grid-row: span 2; }
 .b-full .mini-cards { grid-column: 3; grid-row: 1 / span 2; margin: 0; padding: 0; }
 @media (max-width: 760px) { .b-full { display: flex; } .b-full .mini-cards { margin-top: 8px; } }
+.check-list { list-style: none; padding: 0; margin: 16px 0; display: grid; gap: 10px; }
+.check { display: flex; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--surface-2); }
+.check p { margin: 2px 0 0; font-size: 0.93rem; color: var(--ink-2); }
+.check.good svg { color: var(--good); }
+.check.warn svg { color: var(--warn); }
+.check.bad svg { color: var(--bad); }
+.check svg { flex: none; margin-top: 2px; }

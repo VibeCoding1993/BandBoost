@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/LegalPage";
-import { site } from "@/lib/site";
+import { aiOn, site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Privacy Policy", description: `How ${site.name} handles your data, cookies and advertising.`, alternates: { canonical: "/privacy/" } };
 
@@ -22,11 +22,13 @@ You do not need an account to use this site. We do not ask for your name, email 
 
 Some tools save your progress **in your own browser** (local storage): your writing drafts, flashcard progress and best practice-test scores. This information never leaves your device unless you send it yourself, and you can delete it at any time by clearing your browser's site data.
 
-## AI feedback
+## Essay checker and speaking practice
 
-When you request AI feedback, the text of your answer (or the transcript of your spoken answer) is sent to our feedback service and then to **Google's Gemini API** to generate the feedback. We do not store your text on our servers. Google processes it under its own terms and privacy policy. Do not include personal information in answers you submit. Speech recognition in the Speaking tool is provided by your browser; depending on the browser, audio may be processed by its provider (for example Google for Chrome).
+The instant checks in our essay checker run **entirely in your browser**: the text you type is not sent to us. Speech recognition in the Speaking tool is provided by your browser; depending on the browser, audio may be processed by its provider (for example Google for Chrome).
 
-To prevent abuse, our feedback service counts requests per IP address for a limited time. These counters are kept in memory only and are not linked to any other information.
+${aiOn ? `When you request **AI feedback**, the text of your answer (or the transcript of your spoken answer) is sent to our feedback service and then to **Google's Gemini API** to generate the feedback. We do not store your text on our servers. Google processes it under its own terms and privacy policy. Do not include personal information in answers you submit.
+
+To prevent abuse, our feedback service counts requests per IP address for a limited time. These counters are kept in memory only and are not linked to any other information.` : ""}
 
 ## Cookies and advertising
 
