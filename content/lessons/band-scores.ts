@@ -72,6 +72,17 @@ Your overall band is the **average of the four skill bands**, rounded to the nea
 3. For Writing and Speaking, study the criteria in our lessons on [Task 2 structure](/lessons/writing-task-2-essay-structure/) and [Speaking Part 2](/lessons/speaking-part-2-cue-card/). Examiners reward specific features, not just "good English".
 4. Re-test every two to three weeks to measure progress.
 
+## FAQ
+
+### What is a good IELTS score?
+It depends on your goal. Most universities ask for 6.0 to 7.5 overall, often with a minimum in each skill. Professional registration and some visa routes require 7.0 or more in every skill. Check the exact requirement of the organisation you are applying to.
+
+### How is the IELTS overall band rounded?
+The four skill bands are averaged. An average ending in .25 rounds up to the next half band, an average ending in .75 rounds up to the next whole band, and anything else rounds down to the nearest half or whole band. For example, 6.25 becomes 6.5 and 6.75 becomes 7.0.
+
+### How many correct answers do I need for band 7 in Listening?
+Usually around 30 out of 40. The exact conversion varies slightly between test versions.
+
 Practice scores on any website are estimates. Only an official test result is valid for applications.
 `,
 };

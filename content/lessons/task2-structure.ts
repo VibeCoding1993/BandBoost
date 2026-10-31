@@ -91,6 +91,14 @@ Two sentences: a paraphrase of the topic and a clear position. That is all an in
 4. **Changing your opinion halfway** through the essay.
 5. **Under 250 words.** Short essays are penalised under Task Response.
 
+## FAQ
+
+### How many paragraphs should an IELTS Task 2 essay have?
+Four or five: an introduction, two or three body paragraphs and a conclusion. Each body paragraph should develop one main idea.
+
+### How many words should I write in Task 2?
+At least 250. Around 260 to 300 words is a good target: longer essays earn no extra marks and usually contain more errors.
+
 See this structure in action in our [band 8 opinion essay](/lessons/writing-task-2-opinion-essay/).
 `,
 };

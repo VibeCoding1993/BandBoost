@@ -73,6 +73,14 @@ Take two complete mock tests in exam conditions: same time of day as your real t
 3. **Memorising answers.** Examiners recognise memorised Speaking answers and lower the score.
 4. **Studying only at weekends.** One hour a day beats seven hours on Sunday.
 
+## FAQ
+
+### How long does it take to prepare for IELTS?
+With about one hour of study a day, many learners need six to eight weeks to learn the test format and techniques. Improving your overall English level by a full band usually takes several months.
+
+### Can I prepare for IELTS at home for free?
+Yes. Free lessons, practice tests, timed writing practice and vocabulary tools are enough to prepare well, especially if you analyse your mistakes and practise speaking aloud regularly.
+
 Ready to start? Take the [first practice test](/practice/) now and note your baseline.
 `,
 };

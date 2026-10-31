@@ -8,6 +8,7 @@ import { lessonBySlug, lessons, lessonsBySection, neighbours } from "@/content/l
 import { sectionInfo } from "@/content/types";
 import { site } from "@/lib/site";
 import { breadcrumbLd, ldJson } from "@/lib/seo";
+import { extractFaq, faqLd } from "@/lib/faq";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -62,6 +63,9 @@ export default async function LessonPage({ params }: Params) {
           ]),
         )}
       />
+      {extractFaq(lesson.body).length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(faqLd(extractFaq(lesson.body)))} />
+      )}
       <div className="read-progress" aria-hidden />
       <nav className="breadcrumbs" aria-label="Breadcrumb">
         <Link href="/">Home</Link> › <Link href="/lessons/">Lessons</Link> ›{" "}

@@ -69,6 +69,14 @@ If a passage about coffee does not mention that coffee contains caffeine, the st
 - If you cannot find the information at all after a careful search between the previous and next answers, it is very often NOT GIVEN.
 - Write the answers exactly as instructed: T/F/NG are usually accepted, but **writing "Yes" in a True/False question is marked wrong**.
 
+## FAQ
+
+### What is the difference between False and Not Given?
+False means the passage says the opposite of the statement. Not Given means the passage does not say whether the statement is true or false. If you cannot point to words that contradict the statement, the answer is Not Given.
+
+### Can I write T, F and NG instead of the full words?
+Abbreviations are usually accepted, but writing the wrong set of words, such as Yes instead of True, is marked wrong. Follow the instructions exactly.
+
 Practise the method now in our [Reading practice tests](/practice/), which include original True/False/Not Given questions with explanations.
 `,
 };

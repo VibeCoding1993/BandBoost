@@ -83,6 +83,14 @@ Most test centres offer both formats. The questions, timing and scoring are the 
 2. Read [how band scores work](/lessons/ielts-band-scores-explained/) so you know what you are aiming for.
 3. Follow our [eight-week study plan](/lessons/ielts-study-plan/) and take a [free practice test](/practice/) to find your starting level.
 
+## FAQ
+
+### How long is the IELTS test?
+About 2 hours 45 minutes in total: Listening about 30 minutes, Reading 60 minutes, Writing 60 minutes and Speaking 11 to 14 minutes. Speaking may be on a different day.
+
+### Is IELTS on computer easier than on paper?
+The questions, timing and scoring are the same. The computer test usually gives results faster, and many people find it easier to edit essays by typing. Choose the format that suits how you read and write best.
+
 Rules such as fees, retake options and result times change from time to time, so always confirm the details on the official IELTS website before you book.
 `,
 };

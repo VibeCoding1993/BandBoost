@@ -87,6 +87,14 @@ Use them sparingly. They are fillers, not answers.
 - **Repeating the question word for word.** Paraphrase instead: *"Do you like reading?" → "I'm quite a keen reader."*
 - **Worrying about "correct" opinions.** There are none. The examiner assesses your English, not your ideas.
 
+## FAQ
+
+### How long should my answers be in Speaking Part 1?
+Two to four sentences: answer directly, give a reason, and add an example or extra detail.
+
+### Can I ask the examiner to repeat a question?
+Yes. Asking for repetition or clarification is natural and does not lower your score, as long as you then answer fully.
+
 Next, learn to handle the two-minute talk in [Speaking Part 2](/lessons/speaking-part-2-cue-card/), and practise with our [AI speaking feedback](/ai-feedback/).
 `,
 };
