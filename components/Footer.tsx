@@ -9,10 +9,10 @@ export function Footer() {
           <div>
             <p className="logo">
               <span className="logo-mark" aria-hidden>
-                B
+                BC
               </span>
               <span>
-                Band<b>Boost</b>
+                <small className="logo-pre">IELTS</small> Band<b>Coach</b>
               </span>
             </p>
             <p className="muted">{site.tagline}. Free for every learner, everywhere.</p>

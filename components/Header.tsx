@@ -21,10 +21,10 @@ export function Header() {
       <div className="container header-inner">
         <Link href="/" className="logo" aria-label={site.name + " home"}>
           <span className="logo-mark" aria-hidden>
-            B
+            BC
           </span>
           <span>
-            Band<b>Boost</b>
+            <small className="logo-pre">IELTS</small> Band<b>Coach</b>
           </span>
         </Link>
         <button
