@@ -6,6 +6,7 @@ import { countWords } from "@/lib/bands";
 import { DRAFT_KEY, load, save, type Draft } from "@/lib/storage";
 import { writingPrompts } from "@/content/prompts";
 import { aiOn } from "@/lib/site";
+import { useWakeApi } from "./AiFeedback";
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
 
@@ -19,6 +20,7 @@ export function WritingPractice() {
   const [left, setLeft] = useState(minutes * 60);
   const [running, setRunning] = useState(false);
   const words = countWords(text);
+  useWakeApi();
 
   useEffect(() => {
     const d = load<Draft | null>(DRAFT_KEY, null);

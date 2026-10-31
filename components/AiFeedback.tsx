@@ -19,15 +19,23 @@ async function requestFeedback(body: object): Promise<Feedback> {
   try {
     res = await fetch(site.apiUrl + "/feedback", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   } catch {
-    throw new Error("Could not reach the feedback service. It may be starting up: please try again in 30 seconds.");
+    throw new Error("The feedback service is waking up (this takes up to a minute after a quiet period). Please try again in 30 seconds.");
   }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || "Something went wrong. Please try again.");
   return data as Feedback;
 }
 
+/** Wakes the free-tier API (it sleeps when idle) while the visitor is still writing. */
+export function useWakeApi() {
+  useEffect(() => {
+    if (aiOn) fetch(site.apiUrl + "/health", { mode: "no-cors" }).catch(() => {});
+  }, []);
+}
+
 export function AiFeedback() {
   const [tab, setTab] = useState<Tab>("writing");
+  useWakeApi();
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("tab") === "speaking") setTab("speaking");
   }, []);
