@@ -27,7 +27,7 @@ Static site (set at build time):
 
 | Variable | Meaning |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | public URL, e.g. `https://ieltsbandcoach.com` (canonical links, sitemap) |
+| `NEXT_PUBLIC_SITE_URL` | public URL, e.g. `https://ieltsbandcoach.xyz` (canonical links, sitemap) |
 | `NEXT_PUBLIC_API_URL` | AI feedback API URL; the AI page explains it is not switched on while empty |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | address shown on the contact page |
 | `NEXT_PUBLIC_ADSENSE_CLIENT` | `ca-pub-…` once AdSense approves the site (adds the script, meta tag and `ads.txt`) |
