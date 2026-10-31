@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* Impact.com affiliate network: site ownership check (uses "value", not "content"). */}
-        <meta name="impact-site-verification" {...{ value: "53dfab08-a535-4390-847b-a8d74295fbc8" }} />
+        <meta name="impact-site-verification" {...{ value: "ca3e073c-e949-4891-888d-dd96d1d361f3" }} />
         {site.adsenseClient && (
           // Plain tag in the server-rendered <head>, where AdSense's verification crawler expects it.
           <script
