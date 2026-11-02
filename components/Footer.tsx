@@ -24,6 +24,7 @@ export function Footer() {
               <li><Link href="/lessons/#writing">Writing</Link></li>
               <li><Link href="/lessons/#speaking">Speaking</Link></li>
               <li><Link href="/practice/">Practice tests</Link></li>
+              <li><Link href="/requirements/">Score requirements</Link></li>
             </ul>
           </div>
           <div>

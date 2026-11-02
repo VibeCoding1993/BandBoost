@@ -9,6 +9,7 @@ import { ThemeToggle } from "./ThemeToggle";
 const links = [
   { href: "/lessons/", label: "Lessons" },
   { href: "/practice/", label: "Practice tests" },
+  { href: "/requirements/", label: "Score requirements" },
   { href: "/tools/", label: "Free tools" },
   { href: "/ai-feedback/", label: feedbackLabel },
 ];

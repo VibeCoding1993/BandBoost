@@ -1,5 +1,6 @@
 import { lessons } from "@/content/lessons";
 import { practiceTests } from "@/content/practice";
+import { requirements } from "@/content/requirements";
 import { sectionInfo } from "@/content/types";
 import { ogImage } from "@/lib/og";
 
@@ -10,6 +11,7 @@ export const dynamicParams = false;
 const cards: Record<string, { title: string; label: string }> = {
   home: { title: "Reach your target IELTS band, for free", label: "Free IELTS preparation" },
   ...Object.fromEntries(lessons.map((l) => [l.slug, { title: l.title, label: `IELTS ${sectionInfo[l.section].label} lesson` }])),
+  ...Object.fromEntries(requirements.map((r) => [r.slug, { title: r.title, label: `IELTS score requirements · ${r.country}` }])),
   ...Object.fromEntries(practiceTests.map((t) => [t.slug, { title: t.title, label: `Free ${t.skill} practice test` }])),
 };
 

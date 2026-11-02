@@ -1,5 +1,6 @@
 import { lessons } from "@/content/lessons";
 import { practiceTests } from "@/content/practice";
+import { requirements } from "@/content/requirements";
 import { sectionInfo, type Section } from "@/content/types";
 import { disclaimer, site } from "./site";
 
@@ -26,6 +27,9 @@ ${sections
 
 ## Practice tests
 ${practiceTests.map((t) => `- [${t.title}](${site.url}/practice/${t.slug}/): ${t.description}`).join("\n")}
+
+## IELTS score requirements
+${requirements.map((r) => `- [${r.title}](${site.url}/requirements/${r.slug}/): ${r.description} (checked ${r.checked})`).join("\n")}
 
 ## Free tools
 - [IELTS band score calculator](${site.url}/tools/band-score-calculator/): converts Listening and Reading raw scores (out of 40) to bands for Academic and General Training, and calculates the overall band with the official rounding rule.
