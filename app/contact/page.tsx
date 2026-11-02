@@ -22,6 +22,16 @@ We usually reply within a few working days. Please note that we cannot:
 - review long documents by email (use our free [AI feedback tool](/ai-feedback/) instead).
 
 If you found an error in a lesson or a practice question, please mention the page address so we can fix it quickly.
+
+## What you can contact us about
+
+- **Corrections:** a wrong answer, an unclear explanation, a typing error or a broken link.
+- **Suggestions:** topics you would like a lesson on, question types you want to practise, or ideas for new tools.
+- **Teachers and schools:** you are welcome to link to any page for your students. Write to us if you would like to suggest content for your classes.
+- **Privacy requests:** questions about the data described in our [privacy policy](/privacy/).
+- **Advertising concerns:** if you see an advertisement on this site that seems inappropriate or misleading, tell us the page address and what the ad showed, and we will report and block it.
+
+Before writing, you may find your answer in our [About page](/about/), which explains how our lessons and practice tests are made.
 `}
     />
   );

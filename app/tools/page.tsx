@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Calculator, Layers, PenLine, Sparkles } from "lucide-react";
 import { aiOn } from "@/lib/site";
+import { Markdown } from "@/components/Markdown";
 
 export const metadata: Metadata = {
   title: "Free IELTS Tools: Band Calculator, Writing Timer, Flashcards",
@@ -34,6 +35,22 @@ export default function ToolsPage() {
           </Link>
         ))}
       </div>
+      <section className="section narrow">
+        <h2>How to use these tools in your study plan</h2>
+        <Markdown
+          source={`
+Tools are most useful when they support a clear routine. A simple weekly pattern that works for most learners:
+
+1. **Take a practice test** from our [practice section](/practice/) and convert your raw score with the **band score calculator**. This tells you which skill is furthest from your target.
+2. **Learn the strategy** for that weakness in our [lessons](/lessons/), then practise it the same day.
+3. **Write under time pressure** with the **writing timer**: 20 minutes for Task 1 and 40 minutes for Task 2, aiming for at least 150 and 250 words. Writing without a timer gives you a false picture of your level.
+4. **Check your draft** with the ${aiOn ? "AI feedback tool" : "essay checker"} and rewrite the weakest paragraph. Rewriting teaches more than writing a new essay every time.
+5. **Review vocabulary for ten minutes a day** with the flashcards. Spaced repetition brings back the words you find hard more often, so short daily sessions beat long weekly ones.
+
+All tools work in your browser without an account, and your progress is saved on your own device. Scores and checks are estimates to guide your practice, not official IELTS results.
+`}
+        />
+      </section>
     </div>
   );
 }
